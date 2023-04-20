@@ -31,7 +31,27 @@ class Program
             letter = "F";
         }
 
-        Console.WriteLine($"Your grade is: {letter}");
+        
+        double residue = percent % 10;
+
+        string simbol = "";
+
+        if (residue >= 7)
+        {
+            simbol = "+";
+        }
+
+        else if (residue < 3)
+        {
+            simbol = "-";
+        }
+
+        else
+        {
+            simbol = "";
+        }
+
+        Console.WriteLine($"Your grade is: {letter}{simbol}");
         
         if (percent >= 70)
         {
