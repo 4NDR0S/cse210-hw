@@ -9,7 +9,7 @@ class Program
         Console.WriteLine("Welcome to the Journal Program!");
         int number_choise = 0;
 
-        List<Journal> _journals = new List<Journal>();
+        List<Entry> _Entrys = new List<Entry>();
 
 
         // DateTime theCurrentTime = DateTime.Now;
@@ -17,6 +17,7 @@ class Program
 
         while (number_choise != 5)
         {
+            Console.WriteLine();
             Console.WriteLine("Please select one of the following choices");
             Console.WriteLine("1. Write");
             Console.WriteLine("2. Display");
@@ -26,12 +27,6 @@ class Program
             Console.Write("What would you like to do? ");
             number_choise = int.Parse(Console.ReadLine());
 
-            
-            // Journal journal1 = new Journal();
-            // Display_journal MyDisplay = new Display_journal();
-            // List<Journal> _journals = new List<Journal>();
-
-
 
             if (number_choise == 1)
             {
@@ -40,8 +35,8 @@ class Program
                 "What was the best part of my day?", "How did I see the hand of the Lord in my life today?", 
                 "What was the strongest emotion I felt today?", "If I had one thing I could do over today, what would it be?"};
                 int index = rnd.Next(questions.Length);
-                string pregunta_hecha = questions[index];
-                Console.WriteLine(pregunta_hecha);
+                string question_done = questions[index];
+                Console.WriteLine(question_done);
                 Console.Write("> ");
                 string _write = Console.ReadLine();
 
@@ -49,23 +44,23 @@ class Program
                 string dateText = theCurrentTime.ToShortDateString();
 
                 
-                Journal journal1 = new Journal();
-                journal1._date = dateText;
-                journal1._prompt = pregunta_hecha;
-                journal1._answer = _write;
+                Entry Entry1 = new Entry();
+                Entry1._date = dateText;
+                Entry1._prompt = question_done;
+                Entry1._answer = _write;
 
-                // journal1.Display();
-                // MyDisplay._journals.Add(journal1);
-                _journals.Add(journal1);
+                // Entry1.Display();
+            
+                _Entrys.Add(Entry1);
 
             }
 
             if (number_choise == 2)
             {
-                // Console.WriteLine("jiji");
-                foreach (Journal journal in _journals)
+                
+                foreach (Entry Entry in _Entrys)
                 {
-                    journal.Display();
+                    Entry.Display();
                     
                 }  
             }
@@ -77,15 +72,15 @@ class Program
 
             if (number_choise == 4)
             {
-                // public static void SavetoFile(List<Journal> _journals)
+                // public static void SavetoFile(List<Entry> _Entrys)
                 
                 Console.WriteLine("Saving to file...");
             
-                string filename = "AllJournal.txt";
+                string filename = "MyJournal.txt";
 
                 using (StreamWriter outputFile = new StreamWriter(filename))
                 {
-                    foreach (Journal x in _journals)
+                    foreach (Entry x in _Entrys)
                     {
                             outputFile.WriteLine($"Date: {x._date} - Prompt: {x._prompt}");
                             outputFile.WriteLine($"{x._answer}");
