@@ -33,7 +33,8 @@ class Program
                 Random rnd = new Random();
                 string [] questions = {"Who was the most interesting person I interacted with today?", 
                 "What was the best part of my day?", "How did I see the hand of the Lord in my life today?", 
-                "What was the strongest emotion I felt today?", "If I had one thing I could do over today, what would it be?"};
+                "What was the strongest emotion I felt today?", "If I had one thing I could do over today, what would it be?", 
+                "If you had to describe today in one word, what would it be?", "Did you meet your goals for today?"};
                 int index = rnd.Next(questions.Length);
                 string question_done = questions[index];
                 Console.WriteLine(question_done);
@@ -65,18 +66,31 @@ class Program
                 }  
             }
 
-            // if (number_choise == 3)
-            // {
+            if (number_choise == 3)
+            {
+                Console.Write("What is the file name: ");
+                string filename_read = Console.ReadLine();
+                Console.WriteLine("Reading my Journal...");
+                Console.WriteLine();
+                // string filename_read = "Journal.txt";
+                
 
-            // }
+                string [] lines = System.IO.File.ReadAllLines(filename_read);
+
+                foreach (string line in lines)
+                {
+                    Console.WriteLine(line);
+                }
+            }
 
             if (number_choise == 4)
             {
                 // public static void SavetoFile(List<Entry> _Entrys)
-                
+                Console.Write("What is the file name: ");
+                string filename = Console.ReadLine();
                 Console.WriteLine("Saving to file...");
-            
-                string filename = "MyJournal.txt";
+                // string filename = "Journal.txt";
+                
 
                 using (StreamWriter outputFile = new StreamWriter(filename))
                 {
