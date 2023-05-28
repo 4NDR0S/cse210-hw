@@ -28,5 +28,4 @@ class Scripture
     //     return wordList;
 
     // }
-
 }

@@ -2,8 +2,6 @@ class Word
 {
     private string _word;
 
-
-
     public void Hide()
     {
         char[] wordArray = _word.ToCharArray();
