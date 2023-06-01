@@ -78,7 +78,8 @@ class Program
                 }
 
                 Console.WriteLine();
-                Console.WriteLine("Well done!!");
+                // Console.WriteLine("Well done!!");
+                breathingActivity.WellDoneMessage(); 
                 breath.Loading();
                 breathingActivity.tempoBreathing();
                 breath.Loading();
@@ -144,7 +145,7 @@ class Program
                     Console.WriteLine();
                     Console.WriteLine("Well done!!");
                     Console.WriteLine();
-                    reflectingActivity.tempoBreathing();
+                    reflectingActivity.tempoReflecting(); 
                     reflecting.Loading();
                     Console.Clear();
                     
@@ -206,6 +207,15 @@ public class Activity
         }
     }
 
+    public void WellDoneMessage()
+    {
+        Console.WriteLine(" __        __   _ _       _                    _   _ ");
+        Console.WriteLine(" \\ \\      / /__| | |   __| | ___  _ __   ___  | | | |");
+        Console.WriteLine("  \\ \\ /\\ / / _ \\ | |  / _` |/ _ \\| '_ \\ / _ \\ | | | |");
+        Console.WriteLine("   \\ V  V /  __/ | | | (_| | (_) | | | |  __/ |_| |_|");
+        Console.WriteLine("    \\_/\\_/ \\___|_|_|  \\__,_|\\___/|_| |_|\\___| (_) (_)");
+        Console.WriteLine("");
+    }
 }
 
 
@@ -303,7 +313,7 @@ public class ReflectingActivity : Activity
         }
     }
 
-    public void tempoBreathing()
+    public void tempoReflecting()
     {
         Console.WriteLine();
         Console.WriteLine($"You have completed another {_tiempo} seconds of the Reflecting Activity.");
