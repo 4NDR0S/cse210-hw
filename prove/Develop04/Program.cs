@@ -4,6 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
+        List<string>askedQuestions = new List<string>();  //list of questions asked, so that in the future they are not repeated
 
         Console.WriteLine("Hello Develop04 World!");
         int number_choise = 0;
@@ -20,6 +21,8 @@ class Program
             number_choise = int.Parse(Console.ReadLine());
             Console.WriteLine();
 
+
+            // **** BREATHING ACTIVITY ****
             if (number_choise == 1)
             {
                 Console.Clear();
@@ -84,7 +87,10 @@ class Program
                 breathingActivity.tempoBreathing();
                 breath.Loading();
             }
+            
 
+            // **** REFLECTING ACTIVITY ****
+            // List<string>askedQuestions = new List<string>();
             if (number_choise == 2)
             {
                 Console.Clear();
@@ -128,7 +134,8 @@ class Program
                     if (currentTime < futureTime)
                     {
                     Console.Write("> ");
-                    reflectingActivity.DisplayRandomPrompt();
+                    reflectingActivity.askRandomQuestions(askedQuestions);
+                    reflecting.Loading();
                     reflecting.Loading();
                     Console.WriteLine();
                     }
@@ -137,13 +144,45 @@ class Program
                     if (currentTime1 < futureTime)
                     {
                     Console.Write("> ");
-                    reflectingActivity.DisplayRandomPrompt();
+                    reflectingActivity.askRandomQuestions(askedQuestions);
+                    reflecting.Loading();  // loading animations 2 times, to give enough time for thinking on an answer
+                    reflecting.Loading();
+                    Console.WriteLine();
+                    }
+
+                    DateTime currentTime2 = DateTime.Now;
+                    if (currentTime2 < futureTime)
+                    {
+                    Console.Write("> ");
+                    reflectingActivity.askRandomQuestions(askedQuestions);
+                    reflecting.Loading();
+                    reflecting.Loading();
+                    Console.WriteLine();
+                    }
+
+                    DateTime currentTime3 = DateTime.Now;
+                    if (currentTime3 < futureTime)
+                    {
+                    Console.Write("> ");
+                    reflectingActivity.askRandomQuestions(askedQuestions);
+                    reflecting.Loading();
+                    reflecting.Loading();
+                    Console.WriteLine();
+                    }
+
+                    DateTime currentTime4 = DateTime.Now;
+                    if (currentTime4 < futureTime)
+                    {
+                    Console.Write("> ");
+                    reflectingActivity.askRandomQuestions(askedQuestions);
+                    reflecting.Loading();
                     reflecting.Loading();
                     Console.WriteLine();
                     }
 
                     Console.WriteLine();
-                    Console.WriteLine("Well done!!");
+                    // Console.WriteLine("Well done!!");
+                    reflectingActivity.WellDoneMessage();
                     Console.WriteLine();
                     reflectingActivity.tempoReflecting(); 
                     reflecting.Loading();
@@ -152,171 +191,90 @@ class Program
                 }
 
             }
+
+            // **** LISTING ACTIVITY ****
+
+            List<string>ListOfAnswers = new List<string>();
+            if (number_choise == 3)
+            {
+                Console.Clear();
+                Activity listing = new Activity("Welcome to the Listing Activity", 
+                "This Activity will help ypu reflect on the good things in your life bu having you list as many things as you can in a certain area.");
+                listing.mensajeDeInicio();
+                Console.WriteLine("How long, in seconds, would you like for your session?");
+                int z = int.Parse(Console.ReadLine());
+                listing._duration = z;
+
+                Console.Clear();
+                Console.WriteLine("Get ready...");
+                listing.Loading();
+                Console.WriteLine();
+
+                ListingActivity listingActivity = new ListingActivity("Welcome to the Listing Activity", 
+                "This Activity will help ypu reflect on the good things in your life bu having you list as many things as you can in a certain area.",
+                z);
+
+                listingActivity.randomPrompt();
+                listingActivity.ListingLoading();
+                Console.WriteLine();
+
+                DateTime startTime = DateTime.Now;
+                DateTime futureTime = startTime.AddSeconds(z);
+
+                DateTime currentTime = DateTime.Now;
+                if (currentTime < futureTime)        //for the first item in the list
+                {
+                Console.Write("> ");
+                string listingAnswer = Console.ReadLine();
+                ListOfAnswers.Add(listingAnswer);
+                }
+
+                DateTime currentTime1 = DateTime.Now;
+                if (currentTime1 < futureTime)        // if there is two items
+                {
+                Console.Write("> ");
+                string listingAnswer = Console.ReadLine();
+                ListOfAnswers.Add(listingAnswer);
+                }
+
+                DateTime currentTime2 = DateTime.Now;
+                if (currentTime2 < futureTime)       // is theres is more than two items
+                {
+                Console.Write("> ");
+                string listingAnswer = Console.ReadLine();
+                ListOfAnswers.Add(listingAnswer);
+                }
+
+                DateTime currentTime3 = DateTime.Now;
+                if (currentTime3 < futureTime)
+                {
+                Console.Write("> ");
+                string listingAnswer = Console.ReadLine();
+                ListOfAnswers.Add(listingAnswer);
+                }
+
+                DateTime currentTime4 = DateTime.Now;
+                if (currentTime4 < futureTime)
+                {
+                Console.Write("> ");
+                string listingAnswer = Console.ReadLine();
+                ListOfAnswers.Add(listingAnswer);
+                }
+
+                Console.WriteLine();
+                int Listingcount = ListOfAnswers.Count();
+                Console.WriteLine($"You listed {Listingcount} items!");
+
+                Console.WriteLine();
+                listingActivity.WellDoneMessage();
+                listing.Loading();
+                listingActivity.tempoListing();
+                listing.Loading();
+                Console.Clear();
+
+            }
+ 
         }
-
-
-
-        
-        
-    }
-}
-
-public class Activity
-{
-    private string _name;
-    private string _description;
-    public int _duration;
-
-    public List<string> animationString = new List<string>();
-
-    public Activity( string nameActivity, string description)
-    {
-        _name = nameActivity;
-        _description = description;
-        
-    }
-
-    public void mensajeDeInicio()
-    {
-        Console.WriteLine($"{_name}");
-        Console.WriteLine();
-        Console.WriteLine($"{_description}");
-        Console.WriteLine();
-    }
-    public void verificartiempo()
-    {
-        Console.WriteLine();
-        Console.WriteLine($"{_duration}");
-    }
-    public void Loading()
-    {
-        animationString.Add("|");
-        animationString.Add("/");
-        animationString.Add("-");
-        animationString.Add("\\");
-        animationString.Add("|");
-        animationString.Add("/");
-        animationString.Add("-");
-        animationString.Add("\\");
-
-        foreach (string s in animationString)
-        {
-            Console.Write(s);
-            Thread.Sleep(800);
-            Console.Write("\b \b");
-        }
-    }
-
-    public void WellDoneMessage()
-    {
-        Console.WriteLine(" __        __   _ _       _                    _   _ ");
-        Console.WriteLine(" \\ \\      / /__| | |   __| | ___  _ __   ___  | | | |");
-        Console.WriteLine("  \\ \\ /\\ / / _ \\ | |  / _` |/ _ \\| '_ \\ / _ \\ | | | |");
-        Console.WriteLine("   \\ V  V /  __/ | | | (_| | (_) | | | |  __/ |_| |_|");
-        Console.WriteLine("    \\_/\\_/ \\___|_|_|  \\__,_|\\___/|_| |_|\\___| (_) (_)");
-        Console.WriteLine("");
-    }
-}
-
-
-public class BreathingActivity : Activity
-{
-    private int _tiempo;
-    
-    public BreathingActivity( string nameActivity, string description, int tiempo) : base (nameActivity, description)
-    {
-        _tiempo = tiempo;
-    }
-
-    public void tempoBreathing()
-    {
-        Console.WriteLine();
-        Console.WriteLine($"You have completed another {_tiempo} seconds of the Breathing Activity.");
-    }
-
-    public void BreathingStart()
-    {
-        Console.Write("Breathe in...");
-        for (int i = 2; i > 0; i--)
-        {
-            Console.Write(i);
-            Thread.Sleep(1000);
-            Console.Write("\b \b");
-        }
-        Console.WriteLine();
-        Console.Write("Now breathe out...");
-        for (int e = 3; e > 0; e--)
-        {
-            Console.Write(e);
-            Thread.Sleep(1000);
-            Console.Write("\b \b");
-        }
-        Console.WriteLine();
-
-    }
-
-    public void Breathing()
-    {
-        Console.Write("Breathe in...");
-        for (int i = 4; i > 0; i--)
-        {
-            Console.Write(i);
-            Thread.Sleep(1000);
-            Console.Write("\b \b");
-        }
-        Console.WriteLine();
-        Console.Write("Now breathe out...");
-        for (int e = 6; e > 0; e--)
-        {
-            Console.Write(e);
-            Thread.Sleep(1000);
-            Console.Write("\b \b");
-        }
-        Console.WriteLine();
-
-    }
-}
-
-public class ReflectingActivity : Activity
-{
-    private int _tiempo;
-    
-    public List<string> promptList = new List<string>();
-    public ReflectingActivity( string nameActivity, string description, int tiempo) : base (nameActivity, description)
-    {
-        _tiempo = tiempo;
-    }
-
-    public void DisplayRandomPrompt()
-    {
-        promptList.Add("How did you fell when it was complete?");
-        promptList.Add("what is you favorite thing about this experience");
-        promptList.Add("hola");
-        promptList.Add("buenas tardes");
-
-        Random rnd = new Random();
-        int index = rnd.Next(0,4);
-        string randomprompt = promptList[index];
-
-        Console.Write(randomprompt);
-    }
-
-    public void PressEnter()
-    {
-        Console.WriteLine("Now ponder on each of the following questions as the related to this experience.");
-        Console.Write("You may begin in: ");
-        for (int i = 5; i > 0; i--)
-        {
-            Console.Write(i);
-            Thread.Sleep(1000);
-            Console.Write("\b \b");
-        }
-    }
-
-    public void tempoReflecting()
-    {
-        Console.WriteLine();
-        Console.WriteLine($"You have completed another {_tiempo} seconds of the Reflecting Activity.");
     }
 
 }
