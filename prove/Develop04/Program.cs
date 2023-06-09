@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        List<string>askedQuestions = new List<string>();  //list of questions asked, so that in the future they are not repeated
+        // List<string>askedQuestions = new List<string>();  //list of questions asked, so that in the future they are not repeated
 
         Console.WriteLine("Hello Develop04 World!");
         int number_choise = 0;
@@ -56,28 +56,11 @@ class Program
                     breathingActivity.Breathing();  //each each breathing exercise is 10 seconds
                 }
                 DateTime currentTime1 = DateTime.Now;  //if its more than 15 seconds
-                if (currentTime1 < futureTime)
+                while (currentTime1 < futureTime)
                 {
                     Console.WriteLine();
                     breathingActivity.Breathing();
-                }
-                DateTime currentTime2 = DateTime.Now;  //if its more than 25 seconds
-                if (currentTime2 < futureTime)
-                {
-                    Console.WriteLine();
-                    breathingActivity.Breathing();
-                }
-                DateTime currentTime3 = DateTime.Now;  //if its more than 35 seconds
-                if (currentTime3 < futureTime)
-                {
-                    Console.WriteLine();
-                    breathingActivity.Breathing();
-                }
-                DateTime currentTime4 = DateTime.Now;  //if its more than 45 seconds
-                if (currentTime4 < futureTime)
-                {
-                    Console.WriteLine();
-                    breathingActivity.Breathing();
+                    currentTime1 = DateTime.Now;
                 }
 
                 Console.WriteLine();
@@ -91,6 +74,7 @@ class Program
 
             // **** REFLECTING ACTIVITY ****
             // List<string>askedQuestions = new List<string>();
+            
             if (number_choise == 2)
             {
                 Console.Clear();
@@ -120,6 +104,7 @@ class Program
                 string pressEnter = (Console.ReadLine());
 
                 // string pressEnter = "";
+                // List<string>askedQuestions = new List<string>();
                 if (pressEnter == "")
                 {
                     reflectingActivity.PressEnter();
@@ -130,54 +115,16 @@ class Program
 
                     Thread.Sleep(1000);
         
+                    List<string>askedQuestions = new List<string>(); //list of question asked, so they can not repeat
                     DateTime currentTime = DateTime.Now;
-                    if (currentTime < futureTime)
+                    while (currentTime < futureTime)  //loop for the time of the activity
                     {
                     Console.Write("> ");
-                    reflectingActivity.askRandomQuestions(askedQuestions);
-                    reflecting.Loading();
-                    reflecting.Loading();
-                    Console.WriteLine();
-                    }
-                    
-                    DateTime currentTime1 = DateTime.Now;
-                    if (currentTime1 < futureTime)
-                    {
-                    Console.Write("> ");
-                    reflectingActivity.askRandomQuestions(askedQuestions);
+                    reflectingActivity.askRandomQuestions(askedQuestions); 
                     reflecting.Loading();  // loading animations 2 times, to give enough time for thinking on an answer
                     reflecting.Loading();
                     Console.WriteLine();
-                    }
-
-                    DateTime currentTime2 = DateTime.Now;
-                    if (currentTime2 < futureTime)
-                    {
-                    Console.Write("> ");
-                    reflectingActivity.askRandomQuestions(askedQuestions);
-                    reflecting.Loading();
-                    reflecting.Loading();
-                    Console.WriteLine();
-                    }
-
-                    DateTime currentTime3 = DateTime.Now;
-                    if (currentTime3 < futureTime)
-                    {
-                    Console.Write("> ");
-                    reflectingActivity.askRandomQuestions(askedQuestions);
-                    reflecting.Loading();
-                    reflecting.Loading();
-                    Console.WriteLine();
-                    }
-
-                    DateTime currentTime4 = DateTime.Now;
-                    if (currentTime4 < futureTime)
-                    {
-                    Console.Write("> ");
-                    reflectingActivity.askRandomQuestions(askedQuestions);
-                    reflecting.Loading();
-                    reflecting.Loading();
-                    Console.WriteLine();
+                    currentTime = DateTime.Now;
                     }
 
                     Console.WriteLine();
@@ -222,43 +169,12 @@ class Program
                 DateTime futureTime = startTime.AddSeconds(z);
 
                 DateTime currentTime = DateTime.Now;
-                if (currentTime < futureTime)        //for the first item in the list
+                while (currentTime < futureTime)        //loop for the time of the activity
                 {
                 Console.Write("> ");
                 string listingAnswer = Console.ReadLine();
                 ListOfAnswers.Add(listingAnswer);
-                }
-
-                DateTime currentTime1 = DateTime.Now;
-                if (currentTime1 < futureTime)        // if there is two items
-                {
-                Console.Write("> ");
-                string listingAnswer = Console.ReadLine();
-                ListOfAnswers.Add(listingAnswer);
-                }
-
-                DateTime currentTime2 = DateTime.Now;
-                if (currentTime2 < futureTime)       // is theres is more than two items
-                {
-                Console.Write("> ");
-                string listingAnswer = Console.ReadLine();
-                ListOfAnswers.Add(listingAnswer);
-                }
-
-                DateTime currentTime3 = DateTime.Now;
-                if (currentTime3 < futureTime)
-                {
-                Console.Write("> ");
-                string listingAnswer = Console.ReadLine();
-                ListOfAnswers.Add(listingAnswer);
-                }
-
-                DateTime currentTime4 = DateTime.Now;
-                if (currentTime4 < futureTime)
-                {
-                Console.Write("> ");
-                string listingAnswer = Console.ReadLine();
-                ListOfAnswers.Add(listingAnswer);
+                currentTime = DateTime.Now;
                 }
 
                 Console.WriteLine();
