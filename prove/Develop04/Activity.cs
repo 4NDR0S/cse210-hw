@@ -27,7 +27,7 @@ public class Activity
         Console.WriteLine($"{_duration}");
     }
 
-    public void Loading()  //the leading animation
+    public void Loading()  //the loading animation
     {
         foreach (string s in animationString)
         {

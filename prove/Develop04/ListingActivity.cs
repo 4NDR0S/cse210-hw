@@ -9,7 +9,7 @@ public class ListingActivity : Activity
         _tiempo = tiempo;
     }
 
-    public void randomPrompt()
+    public void randomPrompt()  //this funtion display me a random question, from the prmptlist
     {
         Random random = new Random();
         int index = random.Next(PromptList.Length);
@@ -19,8 +19,8 @@ public class ListingActivity : Activity
         Console.WriteLine($" --- {randomprompt} ---");
     }
 
-    public void ListingLoading()
-    {
+    public void ListingLoading()  //this is the loading of listing acitivity, it prints
+    {                             //"You may beging in" and a count down from 5 to 0
         Console.Write("You may begin in: ");
         for (int i = 5; i > 0; i--)
         {

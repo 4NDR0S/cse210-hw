@@ -43,7 +43,7 @@ public class ReflectingActivity : Activity
         }
     }
 
-    public void tempoReflecting()  //displays the time the activity was done
+    public void tempoReflecting()  //displays the time the activity was done 
     {
         Console.WriteLine();
         Console.WriteLine($"You have completed another {_tiempo} seconds of the Reflecting Activity.");

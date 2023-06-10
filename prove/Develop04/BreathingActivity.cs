@@ -13,7 +13,7 @@ public class BreathingActivity : Activity
         Console.WriteLine($"You have completed another {_tiempo} seconds of the Breathing Activity.");
     }
 
-    public void BreathingStart()  //breathing start activity (2 and 3 seconds at first)
+    public void BreathingStart()  //breathing start activity (2 and 3 seconds at the beginning)
     {
         Console.Write("Breathe in..."); 
         for (int i = 2; i > 0; i--)

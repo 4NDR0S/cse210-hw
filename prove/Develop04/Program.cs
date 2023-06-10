@@ -4,7 +4,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        // List<string>askedQuestions = new List<string>();  //list of questions asked, so that in the future they are not repeated
 
         Console.WriteLine("Hello Develop04 World!");
         int number_choise = 0;
@@ -25,7 +24,7 @@ class Program
             // **** BREATHING ACTIVITY ****
             if (number_choise == 1)
             {
-                Console.Clear();
+                Console.Clear();  
                 Activity breath = new Activity("Welcome to the Breathing Activity",
                 "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.");
                 breath.mensajeDeInicio();
@@ -43,8 +42,8 @@ class Program
                 BreathingActivity breathingActivity = new BreathingActivity("Welcome to the Breathing Activity",
                 "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.", z);
 
-                DateTime startTime = DateTime.Now;
-                DateTime futureTime = startTime.AddSeconds(z);
+                DateTime startTime = DateTime.Now;  //time from now
+                DateTime futureTime = startTime.AddSeconds(z);  //time from now + z(time to do the activity)
 
                 Thread.Sleep(1000);
 
@@ -104,14 +103,14 @@ class Program
                 string pressEnter = (Console.ReadLine());
 
                 // string pressEnter = "";
-                // List<string>askedQuestions = new List<string>();
+
                 if (pressEnter == "")
                 {
                     reflectingActivity.PressEnter();
                     Console.Clear();
 
-                    DateTime startTime = DateTime.Now;
-                    DateTime futureTime = startTime.AddSeconds(z);
+                    DateTime startTime = DateTime.Now;  //time from now
+                    DateTime futureTime = startTime.AddSeconds(z);  //time from now + z(time to do the activity)
 
                     Thread.Sleep(1000);
         
