@@ -140,7 +140,7 @@ class Program
 
             // **** LISTING ACTIVITY ****
 
-            List<string>ListOfAnswers = new List<string>();
+            List<string>ListOfAnswers = new List<string>();  //this is a list of the answers
             if (number_choise == 3)
             {
                 Console.Clear();
@@ -177,8 +177,8 @@ class Program
                 }
 
                 Console.WriteLine();
-                int Listingcount = ListOfAnswers.Count();
-                Console.WriteLine($"You listed {Listingcount} items!");
+                int Listingcount = ListOfAnswers.Count();  //with the list i can count the number of items added to the list
+                Console.WriteLine($"You listed {Listingcount} items!");  //this print me the number of items I typed
 
                 Console.WriteLine();
                 listingActivity.WellDoneMessage();
