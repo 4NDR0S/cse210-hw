@@ -6,7 +6,7 @@ class Program
     {
         // Console.WriteLine("Hello Develop05 World!");
         List<Goals> goals = new List<Goals>();
-        string fileName = "myFile.txt";
+        string fileName = "myFile.txt"; //file for load and save 
         int total_points = 0;
 
         int number_choise = 0;
@@ -28,11 +28,6 @@ class Program
             if (number_choise == 1)  //Create New Goal
             {
                 int number_type_goal = 0;
-                //para crear un nuevo goal
-                
-                // escribir: cual es el nombre del goal
-                // string z = Console.ReadLine()
-                // dependiendo del type de goal, crear uno nuevo
 
                 Console.WriteLine("The types of Goals are:");
                 Console.WriteLine("  1. Simple Goal");
@@ -42,7 +37,7 @@ class Program
                 number_type_goal = int.Parse(Console.ReadLine());
                 Console.WriteLine();
 
-                if (number_type_goal == 1) //Simple Goal option(1)
+                if (number_type_goal == 1) //Simple Goal option(1.1)
                 {
                     string goal_type = "SimpleGoal"; // this is the type of the goal
                     string goal_name = "";
@@ -64,7 +59,7 @@ class Program
 
                 } // //simple goal loop
 
-                if (number_type_goal == 2) //Eternal Goal option (2)
+                if (number_type_goal == 2) //Eternal Goal option (2.1)
                 {
                     string goal_type = "EternalGoal"; // this is the type of the goal
                     string goal_name = "";
@@ -84,7 +79,7 @@ class Program
 
                 } //eternal goal loop
 
-                if (number_type_goal == 3) //Checklist Goal option (3)
+                if (number_type_goal == 3) //Checklist Goal option (3.1)
                 {
                     string goal_type = "ChecklistGoal"; // this is the type of the goal
                     string goal_name = "";
@@ -110,41 +105,106 @@ class Program
                     checklist_g.CurrentlyPoints(0);
                     goals.Add(checklist_g); // add to the display list
 
-                } //checklist goal loop
+                } //checklist goal loop (end)
 
-            }  //Create New Goal
+            }  //Create New Goal (end)
 
+
+            //---------------------------------------------(2)
             if (number_choise == 2) //display list of goals
             {
                 foreach (Goals g in goals) //display the list of goals created
                 {
                     g.DisplayGoal();
                 }
-            } //display list of goals
+            } //display list of goals (end)---------------(2)
 
-            if (number_choise == 3) //save goals
+
+            //--------------------------------------------(3)
+            if (number_choise == 3) //save goals to a file
             {
                 using (StreamWriter outputFile = new StreamWriter(fileName))
-                    {
-                        outputFile.WriteLine($"{total_points}");  //total points
-                    }
-                // string fileName = "myFile.txt";
-                foreach (Goals g in goals)
                 {
-                    string type = g.GetType();
-                    string name = g.GetName();
-                    string description = g.GetDescription();
-                    int points = g.GetPoints();
+                    outputFile.WriteLine($"{total_points}"); //total points at first
 
-                    // Console.WriteLine($"{type}:{name},{description},{points}"); //this is the order to save in the file
-                    using (StreamWriter outputFile = new StreamWriter(fileName))
+                    foreach (Goals g in goals)
                     {
-                        outputFile.WriteLine($"{type}:{name},{description},{points}");
+                        outputFile.WriteLine(g.Save());
+                    }
+                }
+                
+            }//save goals (end)---------------------------(3)
+
+
+            //---------------------------------------------(4)
+            if (number_choise == 4) //load goal from a file
+            {
+                using (StreamReader reader = new StreamReader(fileName))
+                {
+                    string line;
+                    if ((line = reader.ReadLine())!= null)
+                    {
+                        total_points = int.Parse(line);  //this is for read the total points at the top of the file
+                    }
+                    
+                    while ((line = reader.ReadLine())!= null)
+                    {
+                        string[] parts = line.Split(":");
+                        string type = parts[0];
+                        string[] subparts = parts[1].Split(",");
+                        string name = subparts[0];
+                        string description = subparts[1];
+                        int points = int.Parse(subparts[2]);
+
+                        if (type == "SimpleGoal")  //this verify if its SimpleGoal
+                        {
+                            string checkmark = subparts[3];
+                            SimpleGoal simple = new SimpleGoal(type, name, description, points);
+                            if (checkmark == "True")  // this check is the goal was done or not
+                            {
+                                simple.SetCheck("X");
+                            }
+                            else
+                            {
+                                simple.SetCheck(" ");
+                            }
+                            goals.Add(simple);
+                        }
+
+                        if (type == "EternalGoal")  //this verify if its EternalGoal
+                        {
+                            EternalGoal eternal = new EternalGoal(type, name, description, points);
+                            eternal.SetCheck(" "); // [ ]
+                            goals.Add(eternal);
+                        }
+
+                        if (type == "ChecklistGoal")  //this verify if its ChecklistGoal
+                        {
+                            int bonusPoints = int.Parse(subparts[3]);
+                            int timesBonus = int.Parse(subparts[4]);
+                            int currently = int.Parse(subparts[5]);
+
+                            ChecklistGoal checklist = new ChecklistGoal(type, name, description, points, timesBonus, bonusPoints, currently);
+                            if (currently == timesBonus)
+                            {
+                                checklist.SetCheck("X");
+                            }
+                            else
+                            {
+                                checklist.SetCheck(" ");
+                            }
+                            goals.Add(checklist);
+
+                        }                        
                     }
 
+                    // Console.WriteLine(total_points);
+                    // Console.WriteLine($"{tipo}{nombre}{puntos}");
                 }
-            }//save goals
+            }//load goal from a file (end)------------------------------------------------------(4)
 
+
+            //------------------------------------(5)
             if (number_choise == 5) //Record Event
             {
                 int i = 1;
@@ -226,51 +286,12 @@ class Program
                         // Console.WriteLine(goals[record_choise-1].GetPoints()); //this only print how many points have the activity selected
                         Console.WriteLine();
                     }
-            }  //Record Event
+            }  //Record Event (end)--------------------------(5)
 
 
 
-        }//menu loop
+        }//menu loop (end)---
 
 
-    }
-}
-
-
-
-
-class EternalGoal : Goals
-{
-    public EternalGoal(string type, string name, string description, int points) : base (type, name, description, points)
-    {
-
-    }
-
-    public override void DisplayGoal()
-    {
-        Console.WriteLine($"[{_check}] {_name} ({_description})");
-    }
-
-    // public override void displayGoalDone()
-    // {
-    //     Console.WriteLine($"[✓] {_name} ({_description})");
-    // }
-}
-
-
-class ChecklistGoal : Goals
-{
-    // private int _timesForBonus;
-    // private int _bonusPoints;
-    // private int _currently;
-    public ChecklistGoal(string type, string name, string description, int points, int timesForBonus, int bonusPoints, int currently) : base (type, name, description, points, timesForBonus, bonusPoints, currently)
-    {
-       
-    }
-
-
-    public override void DisplayGoal()
-    {
-        Console.WriteLine($"[{_check}] {_name} ({_description}) -- Currently completed: {_currently}/{_timesForBonus}");
     }
 }

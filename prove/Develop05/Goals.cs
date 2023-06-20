@@ -85,4 +85,9 @@ class Goals
         return _bonusPoints;
     }
 
+
+    public virtual string Save()
+    {
+        return ("hola");
+    }
 }

@@ -9,4 +9,17 @@ class SimpleGoal : Goals
     {
         Console.WriteLine($"[{_check}] {_name} ({_description})");
     }
+
+
+    public override string Save()
+    {
+        if (_check == "X")  
+        {
+            return ($"{_type}:{_name},{_description},{_points},True");
+        }
+        else
+        {
+            return ($"{_type}:{_name},{_description},{_points},False");
+        }
+    }
 }
