@@ -7,7 +7,7 @@ class Program
         // Console.WriteLine("Hello Develop05 World!");
         List<Goals> goals = new List<Goals>();
         string fileName = "myFile.txt"; //file for load and save 
-        int total_points = 0;
+        int total_points = 0;  //store the total points
 
         int number_choise = 0;
         while (number_choise != 6)  //menu loop
