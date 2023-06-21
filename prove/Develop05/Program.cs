@@ -6,7 +6,7 @@ class Program
     {
         // Console.WriteLine("Hello Develop05 World!");
         List<Goals> goals = new List<Goals>();
-        string fileName = "myFile.txt"; //file for load and save 
+        // filename = goals.txt
         int total_points = 0;  //store the total points
 
         int number_choise = 0;
@@ -113,9 +113,11 @@ class Program
             //---------------------------------------------(2)
             if (number_choise == 2) //display list of goals
             {
+                int i = 1;
                 foreach (Goals g in goals) //display the list of goals created
                 {
-                    g.DisplayGoal();
+                    Console.Write(i + ". ");g.DisplayGoal();i++;
+                    // g.DisplayGoal();
                 }
             } //display list of goals (end)---------------(2)
 
@@ -123,7 +125,10 @@ class Program
             //--------------------------------------------(3)
             if (number_choise == 3) //save goals to a file
             {
-                using (StreamWriter outputFile = new StreamWriter(fileName))
+                string filename = "";
+                Console.Write("what is the filename for the goal file? ");
+                filename = Console.ReadLine(); 
+                using (StreamWriter outputFile = new StreamWriter(filename))
                 {
                     outputFile.WriteLine($"{total_points}"); //total points at first
 
@@ -133,13 +138,17 @@ class Program
                     }
                 }
                 
+                SavingAnimation(); //this display my animation for saving
             }//save goals (end)---------------------------(3)
 
 
             //---------------------------------------------(4)
             if (number_choise == 4) //load goal from a file
             {
-                using (StreamReader reader = new StreamReader(fileName))
+                string filename = "";
+                Console.Write("what is the filename for the goal file? ");
+                filename = Console.ReadLine();
+                using (StreamReader reader = new StreamReader(filename))  //reader
                 {
                     string line;
                     if ((line = reader.ReadLine())!= null)
@@ -195,18 +204,17 @@ class Program
                             }
                             goals.Add(checklist);
 
-                        }                        
+                         }
                     }
-
-                    // Console.WriteLine(total_points);
-                    // Console.WriteLine($"{tipo}{nombre}{puntos}");
-                }
+                } // reader (end)
+                LoadingAnimation();  //this display my animation for loading
             }//load goal from a file (end)------------------------------------------------------(4)
 
 
             //------------------------------------(5)
             if (number_choise == 5) //Record Event
             {
+                Console.WriteLine("Select the goal you want to record:");
                 int i = 1;
                 int record_choise = 0;
                 foreach (Goals g in goals) //display the list of goals created
@@ -216,7 +224,7 @@ class Program
 
                     // Console.WriteLine(i + "." + g.GetName()+ "(indice:"+goals.IndexOf(g)+")");i++; //this print me 1.{goalname}(indice:0)
 
-                    Console.WriteLine(i + "." + g.GetName());i++; //this print me goals with a number list
+                    Console.WriteLine(i + ". " + g.GetName());i++; //this print me goals with a number list
                 }
 
                 Console.Write("Which goal did you accomplish? ");
@@ -293,5 +301,33 @@ class Program
         }//menu loop (end)---
 
 
+        //adding animations.........................................
+        void SavingAnimation()
+        {
+            Console.Write("Saving");
+            for (int i = 4; i > 0; i--)
+            {
+                Console.Write(".");
+                Thread.Sleep(900);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("The file was saved correctly!");
+            Console.WriteLine();
+        }
+        void LoadingAnimation()
+        {
+            Console.Write("Loading");
+            for (int i = 4; i > 0; i--)
+            {
+                Console.Write(".");
+                Thread.Sleep(900);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("The file was uploaded correctly!");
+            Console.WriteLine();
+        }
+        //animations
     }
 }
