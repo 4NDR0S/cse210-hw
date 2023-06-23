@@ -12,7 +12,7 @@ class Program
         int number_choise = 0;
         while (number_choise != 6)  //menu loop
         {
-            Console.WriteLine($"You have {total_points} points.");// you have 0 points.
+            Console.WriteLine($"You have {total_points} points.");// print the total points, example: You have 0 points
             Console.WriteLine();
             Console.WriteLine("Menu Options:");
             Console.WriteLine("  1. Create New Goal");
@@ -116,7 +116,7 @@ class Program
                 int i = 1;
                 foreach (Goals g in goals) //display the list of goals created
                 {
-                    Console.Write(i + ". ");g.DisplayGoal();i++;
+                    Console.Write(i + ". ");g.DisplayGoal();i++;  // *i* is the counter, to get the list of goals with a number
                     // g.DisplayGoal();
                 }
             } //display list of goals (end)---------------(2)
@@ -134,7 +134,7 @@ class Program
 
                     foreach (Goals g in goals)
                     {
-                        outputFile.WriteLine(g.Save());
+                        outputFile.WriteLine(g.Save());  //save is an override funtion to save depending on the class
                     }
                 }
                 
@@ -159,11 +159,11 @@ class Program
                     while ((line = reader.ReadLine())!= null)
                     {
                         string[] parts = line.Split(":");
-                        string type = parts[0];
+                        string type = parts[0];  // to get the first part, in this case the type of goal
                         string[] subparts = parts[1].Split(",");
-                        string name = subparts[0];
-                        string description = subparts[1];
-                        int points = int.Parse(subparts[2]);
+                        string name = subparts[0];  //to get the name of each goal
+                        string description = subparts[1];  //to get the description
+                        int points = int.Parse(subparts[2]);  // to get the points
 
                         if (type == "SimpleGoal")  //this verify if its SimpleGoal
                         {
@@ -171,11 +171,11 @@ class Program
                             SimpleGoal simple = new SimpleGoal(type, name, description, points);
                             if (checkmark == "True")  // this check is the goal was done or not
                             {
-                                simple.SetCheck("X");
+                                simple.SetCheck("X");  //if its true this mark the goal as done
                             }
                             else
                             {
-                                simple.SetCheck(" ");
+                                simple.SetCheck(" ");  //if its false, it doesnt get mark
                             }
                             goals.Add(simple);
                         }
@@ -194,13 +194,14 @@ class Program
                             int currently = int.Parse(subparts[5]);
 
                             ChecklistGoal checklist = new ChecklistGoal(type, name, description, points, timesBonus, bonusPoints, currently);
-                            if (currently == timesBonus)
+                            if (currently == timesBonus)  //if courrently = bonustimes
                             {
-                                checklist.SetCheck("X");
+                                checklist.SetCheck("X");  //mark as done
                             }
                             else
                             {
-                                checklist.SetCheck(" ");
+                                checklist.SetCheck(" "); //if currently is not the same, it doesnt get mark
+
                             }
                             goals.Add(checklist);
 
@@ -238,7 +239,7 @@ class Program
                     if (record_choise <= goals.Count)
                     {
                         type = goals[record_choise-1].GetType();
-                        if (type == "SimpleGoal")
+                        if (type == "SimpleGoal")  // for simple goals
                         {
                             if (goals[record_choise-1].GetCheck() != "X") // this check if the goal was done or not
                             {
@@ -253,14 +254,14 @@ class Program
                             }
                         }
 
-                        if (type == "EternalGoal")
+                        if (type == "EternalGoal")  // for eternal goals
                         {
                             points = goals[record_choise-1].GetPoints();
                             total_points = total_points + points;
                             Console.WriteLine($"Congratulations! You have earned {goals[record_choise-1].GetPoints()} points!");
                         }
 
-                        if (type == "ChecklistGoal")
+                        if (type == "ChecklistGoal")  // for checklist goal 
                         {
                             if (goals[record_choise-1].GetCheck() != "X") // this check if the goal was done or not
                             {
